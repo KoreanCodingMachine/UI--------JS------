@@ -19,7 +19,7 @@
 
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
-            <span class="navbar-brand">Navbar</span>
+            <span class="navbar-brand">로고</span>
             <button class="navbar-toggler" type="button">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -44,7 +44,7 @@
                     <input type="text" class="form-control" id="email">
                 </div>
                 <div class="my-3">
-                    <input type="password" class="form-control">
+                    <input type="password" class="form-control" id="pw">
                 </div>
                 <button type="submit" class="btn btn-primary" id="send">전송</button>
                 <button type="button" class="btn btn-danger" id="close">닫기</button>
@@ -52,20 +52,175 @@
         </div>
     </div>
 
+    <span class="badge bg-dark">Dark 🔄</span>
+
+
+    <!-- 1335 -->
+    <p>태조 이성계가 태어난 년도는?</p>
+    <input type="text" id="answer">
+    <button type="submit" id="send-answer">제출</button>
+
+    <div class="alert alert-danger">
+        <span id="alert-number">5</span>초 이내 구매시 사은품 증정
+    </div>
+
+    <div style="overflow: hidden">
+        <div class="slide-container">
+            <div class="slide-box">
+                <img src="car1.png">
+            </div>
+            <div class="slide-box">
+                <img src="car2.png">
+            </div>
+            <div class="slide-box">
+                <img src="car3.png">
+            </div>
+        </div>
+    </div>
+
+    <button class="slide-1">1</button>
+    <button class="slide-2">2</button>
+    <button class="slide-3">3</button>
+    <button class="next">다음</button>
+
+
+    <div class="lorem" style="width: 200px; height: 100px; overflow-y: scroll">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae voluptas voluptatum minus praesentium fugit
+        debitis at, laborum ipsa itaque placeat sit, excepturi eius. Nostrum perspiciatis, eligendi quae consectetur
+        praesentium exercitationem.
+    </div>
+
+    <!-- div 스크롤바 내린 양 + div가 화면에 보이는 높이 == div 실제높이일 경우 alert 띄워주세요~ -->
+
+
+
+
+    <script>
+        $('.lorem').on('scroll', () => {
+            let scroll1 = document.querySelector('.lorem').scrollTop;
+            // console.log(scroll1)
+            let scroll2 = document.querySelector('.lorem').scrollHeight // 스크롤 가능한 실제 높이(박스 포함)
+            console.log(scroll2) // 288
+            let scroll3 = document.querySelector('.lorem').clientHeight; // 화면에 보이는 스크롤 
+
+            if (scroll1 + scroll3 > scroll2 - 30) {
+                alert('끝까지 내림')
+            }
+
+        })
+    </script>
+
+
+
+
+    <script>
+        $(window).on('scroll', () => {
+            scroll_num = ($(window).scrollTop())
+            if (scroll_num < 80) {
+                $('.navbar-brand').css('font-size', '100px')
+            }
+            if (scroll_num > 80) {
+                $('.navbar-brand').css('font-size', '10px')
+            }
+        })
+    </script>
+
+
+    <script>
+        $('.slide-1').on('click', function () {
+            $('.slide-container').css('transform', 'translateX(0vw)');
+        });
+        $('.slide-2').on('click', function () {
+            $('.slide-container').css('transform', 'translateX(-100vw)');
+        });
+        $('.slide-3').on('click', function () {
+            $('.slide-container').css('transform', 'translateX(-200vw)');
+        });
+        var next_num = -1
+        $('.next').on('click', () => {
+            next_num++;
+            $('.slide-container').css('transform', 'translateX(-' + next_num + '00vw)');
+            if (next_num >= 2) {
+                next_num = -1
+            }
+        })
+
+
+    </script>
+
+
+    <script>
+
+        let timer_num = 1
+        let alert_num = $('#alert-number').html()
+        console.log(alert_num)
+        let myTime = setInterval(() => {
+            $('#alert-number').html(alert_num -= 1)
+            timer_num++;
+            if (alert_num === 0) {
+                clearInterval(myTime)
+            }
+        }, 1000)
+
+
+    </script>
+
+    <script>
+        let btn_num = 0;
+
+        $('#send-answer').on('click', function () {
+            btn_num++;
+            let user_answer = document.querySelector('#answer').value
+
+            if (user_answer == '1335') {
+                alert('성공')
+            } else if (btn_num >= 3 && user_answer != '1335') {
+                alert('수고')
+            }
+        })
+    </script>
+
+
+    <script>
+        let num = 0;
+        $('.badge').on('click', function () {
+            num++;
+            if (num % 2 === 1) {
+                $('.badge').html('Light')
+            } else {
+                $('.badge').html('Dark')
+            }
+        })
+    </script>
+
+    <!-- let 과 const는 재선언이 불가능하다
+    var -> Functin-scoped / 재선언O / 재할당O
+    let -> {Block-scoped} / 재선언x / 재할당O
+    const -> {Block-scoped} / 재선언x / 재할당x -->
+
     <script>
         $('form').on('submit', function () {
             //$('email').val==''
             if (document.getElementById('email').value === '') {
                 alert('아이디를 입력하세요');
             }
-        });
-
-        $('#send').on('submit', function (e) {
-            if (document.getElementById('email').value == '') {
-                e.preventDefault();
-                alert('아이디 입력하세요');
+            let pw = document.getElementById('pw').value
+            if (/[A-Z]/.test(pw) == false) {
+                alert('대시던트');
+            }
+            if (document.getElementById('pw').value.length < 6) {
+                alert('비번 입력좀더 하셈');
             }
         });
+
+        $('form').on('submit', function (e) {
+            if (document.getElementById('email').value == '') {
+                e.preventDefault();
+                // alert('아이디 입력하세요');
+            }
+        });
+
+
 
     </script>
 
@@ -85,6 +240,9 @@
         })
     </script>
 
+
+    <scirpt src="index.js">
+    </scirpt>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>

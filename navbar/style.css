@@ -1,3 +1,4 @@
+:root { scroll-behavior : auto } 
 .alert-box{
     background-color: skyblue;
     padding: 20px;
@@ -27,3 +28,26 @@
     border-radius: 5px;
     padding: 30px;
   } 
+
+  .slide-container {
+    width: 300vw;
+    transition: all 1s;
+    transform: translateX(-100vw);
+  }
+  .slide-box {
+    width: 100vw;
+    float: left;
+  }
+  .slide-box img {
+    width: 100%;
+  } 
+
+  .navbar {
+    position : fixed;
+    width : 100%;
+    z-index : 5
+  }
+  .navbar-brand {
+    font-size : 30px;
+    transition : all 1s;
+  }
