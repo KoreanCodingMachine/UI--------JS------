@@ -27,6 +27,7 @@ products.forEach((a, i) => {
     <img src="https://via.placeholder.com/600" class="w-100">
     <h5>${products[i].title}</h5>
     <p>가격 : ${products[i].price}</p>
+    <button class="buy">구매</button>
   </div>`;
   $('.row').append(템플릿);
 });
@@ -60,6 +61,17 @@ $('#filter').click(() => {
   </div>`;
     $('.row').append(products_template);
   });
+});
+
+$('.buy').click(function () {
+  let title = $(e.target).siblings('h5').text();
+  if (localStorage.getItem('cart') != null) {
+    let output = JSON.parse(localStorage.cart);
+    output.push(title);
+    localStorage.setItem('cart', JSON.stringify(output));
+  } else {
+    localStorage.setItem('cart', JSON.stringify([title]));
+  }
 });
 
 $('#price').click(() => {
