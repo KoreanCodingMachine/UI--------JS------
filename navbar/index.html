@@ -36,6 +36,12 @@
 
     <button class="modal-btn">모달창</button>
 
+    <script>
+        $('modal-btn').on('click', () => {
+            $('.black-bg').addClass('show')
+        })
+    </script>
+
     <div class="black-bg">
         <div class="white-bg">
             <h4>로그인하세요</h4>
@@ -51,10 +57,7 @@
             </form>
         </div>
     </div>
-
     <span class="badge bg-dark">Dark 🔄</span>
-
-
     <!-- 1335 -->
     <p>태조 이성계가 태어난 년도는?</p>
     <input type="text" id="answer">
@@ -78,12 +81,30 @@
         </div>
     </div>
 
+
+
+
     <button class="slide-1">1</button>
     <button class="slide-2">2</button>
     <button class="slide-3">3</button>
     <button class="next">다음</button>
 
-
+    <script>
+        $('.slide-1').on('click', () => {
+            $('.slide-container').css('transform', 'translateX(0vw)')
+        })
+        $('.slide-2').on('click', () => {
+            $('.slide-container').css('transform', 'translateX(-100vw)')
+        })
+        $('.slide-3').on('click', () => {
+            $('.slide-container').css('transform', 'translateX(-200vw)')
+        })
+        let click_num = 0
+        $('.next').on('click', () => {
+            click_num++;
+            $('.slide-container').css('transform', `translateX(${-(click_num * 100)}vw)`)
+        })
+    </script>
     <div class="lorem" style="width: 200px; height: 100px; overflow-y: scroll">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae voluptas voluptatum minus praesentium fugit
         debitis at, laborum ipsa itaque placeat sit, excepturi eius. Nostrum perspiciatis, eligendi quae consectetur
@@ -127,37 +148,10 @@
 
 
     <script>
-        $('.slide-1').on('click', function () {
-            $('.slide-container').css('transform', 'translateX(0vw)');
-        });
-        $('.slide-2').on('click', function () {
-            $('.slide-container').css('transform', 'translateX(-100vw)');
-        });
-        $('.slide-3').on('click', function () {
-            $('.slide-container').css('transform', 'translateX(-200vw)');
-        });
-        var next_num = -1
-        $('.next').on('click', () => {
-            next_num++;
-            $('.slide-container').css('transform', 'translateX(-' + next_num + '00vw)');
-            if (next_num >= 2) {
-                next_num = -1
-            }
-        })
-
-
-    </script>
-
-
-    <script>
-
-        let timer_num = 1
         let alert_num = $('#alert-number').html()
-        console.log(alert_num)
         let myTime = setInterval(() => {
-            $('#alert-number').html(alert_num -= 1)
-            timer_num++;
-            if (alert_num === 0) {
+            $('#alert-number').html(--alert_num)
+            if (alert_num == 0) {
                 clearInterval(myTime)
             }
         }, 1000)
@@ -216,7 +210,7 @@
         $('form').on('submit', function (e) {
             if (document.getElementById('email').value == '') {
                 e.preventDefault();
-                // alert('아이디 입력하세요');
+                // alert('아이디 입력하세요');z
             }
         });
 
@@ -226,11 +220,6 @@
 
 
     <script>
-
-        $('.modal-btn').on('click', function () {
-            $('.black-bg').fadeIn()
-        })
-
         $('.btn-danger').on('click', function () {
             $('.black-bg').css('display', 'none')
         })

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <title>연습</title>
+</head>
+
+<body>
+    <div class="alert-box" id="alert">
+        <p id="title"> 알림창임 </p>
+        <button id="close">닫기</button>
+    </div>
+    <button onclick="openbtn()">열기버튼</button>
+    <button onclick="closebtn()">닫기버튼</button>
+
+    <script>
+        function openbtn() {
+            document.getElementById('alert').style.display = 'block'
+        }
+        function closebtn() {
+            document.getElementById('alert').style.display = 'none'
+        }
+        document.getElementById('title').innerHTML = '안녕'
+
+        document.getElementById('close').addEventListener('click', function () {
+            document.getElementById('alert').style.display = 'none'
+        })
+    </script>
+</body>
+
+</html>

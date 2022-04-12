@@ -1,5 +1,5 @@
-$('.black-bg').on('click', (e) => {
-  if (e.target == document.querySelector('.black-bg')) {
-    document.querySelector('.black-bg').classList.remove('show-modal');
-  }
-});
+document
+  .getElementsByClassName('navbar-toggler')[0]
+  .addEventListener('click', function () {
+    document.getElementsByClassName('list-group')[0].classList.add('show');
+  });
